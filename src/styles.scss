@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+body, html {
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  
+}
+
+app-root, mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}

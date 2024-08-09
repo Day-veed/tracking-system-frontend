@@ -1,0 +1,22 @@
+
+<div class="all-reports-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>All Reports</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="reports-container" *ngIf="reports.length > 0; else noReports">
+        <mat-card *ngFor="let report of reports" class="report-card">
+          <mat-card-title>{{ report.filename }}</mat-card-title>
+          <mat-card-content>
+            <p>{{ report.uploadDate | date }}</p>
+            <a mat-raised-button color="accent" [href]="report.url" target="_blank">View</a>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <ng-template #noReports>
+        <p>No available reports</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

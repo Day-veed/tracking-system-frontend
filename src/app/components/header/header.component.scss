@@ -1,0 +1,39 @@
+.menu-button {
+    display: none;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .desktop-nav a {
+    margin-right: 10px;
+  }
+  
+  .sidenav-container {
+    height: 100vh; // Ensure the sidenav container takes full viewport height
+  }
+  
+  mat-sidenav {
+    width: 250px;
+  }
+  
+  @media (max-width: 768px) {
+    .menu-button {
+      display: inline;
+    }
+  
+    .desktop-nav {
+      display: none;
+    }
+  
+    mat-sidenav-container {
+      margin-top: 0; // Reset any margin that might be causing the space
+      padding-top: 0; // Reset any padding that might be causing the space
+    }
+  
+    mat-sidenav {
+      width: 250px;
+    }
+  }
+  

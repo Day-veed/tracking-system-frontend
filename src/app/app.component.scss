@@ -1,0 +1,7 @@
+.main-content {
+    padding: 0; // Ensure no padding
+    margin: 0; // Ensure no margin
+    min-height: calc(10vh - 64px); // Adjust based on header height
+    box-sizing: border-box;
+  }
+  

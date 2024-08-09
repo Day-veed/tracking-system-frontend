@@ -1,0 +1,36 @@
+.upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: calc(50vh - 64px); // Adjust for header height
+    box-sizing: border-box;
+  
+    mat-card {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px; // Added padding for better spacing
+  
+      mat-card-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .upload-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+  
+        .full-width {
+          width: 100%;
+        }
+      }
+  
+      button {
+        align-self: flex-end; // Align the button to the right
+      }
+    }
+  }
+  

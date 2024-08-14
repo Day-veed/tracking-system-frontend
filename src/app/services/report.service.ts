@@ -6,7 +6,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ReportService {
-  private apiUrl = 'http://localhost:3000/api/report';
+  private apiUrl = 'https://report-tracking-system-08f9d809933c.herokuapp.com/api/report';
 
   constructor(private authService: AuthService) {}
 

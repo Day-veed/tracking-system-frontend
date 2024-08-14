@@ -1,21 +1,38 @@
-
 <div class="all-reports-container">
   <mat-card>
     <mat-card-header>
       <mat-card-title>All Reports</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="reports-container" *ngIf="reports.length > 0; else noReports">
-        <mat-card *ngFor="let report of reports" class="report-card">
-          <mat-card-title>{{ report.filename }}</mat-card-title>
-          <mat-card-content>
-            <p>{{ report.uploadDate | date }}</p>
-            <a mat-raised-button color="accent" [href]="report.url" target="_blank">View</a>
-          </mat-card-content>
-        </mat-card>
+      <!-- Introduction Section -->
+      <div class="all-reports-intro">
+        <h2>All Reports</h2>
+        <p>A total of {{ reports.length }} reports are available in the system.</p>
       </div>
+
+      <!-- Reports Table -->
+      <table *ngIf="reports.length > 0; else noReports" class="reports-table">
+        <thead>
+          <tr>
+            <th>Filename</th>
+            <th>Upload Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reports">
+            <td>{{ report.filename }}</td>
+            <td>{{ report.uploadDate | date }}</td>
+            <td>
+              <a mat-raised-button color="accent" [href]="report.url" target="_blank">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- No Reports Template -->
       <ng-template #noReports>
-        <p>No available reports</p>
+        <p class="no-reports">No available reports</p>
       </ng-template>
     </mat-card-content>
   </mat-card>

@@ -1,21 +1,69 @@
-
 <div class="register-container">
   <mat-card>
     <mat-card-title>Register</mat-card-title>
-    <mat-card-content>
-      <mat-form-field class="full-width">
-        <mat-label>Username</mat-label>
-        <input matInput [(ngModel)]="username" type="text">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" type="email">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput [(ngModel)]="password" type="password">
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="register()">Register</button>
-    </mat-card-content>
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <mat-label>Username</mat-label>
+          <input 
+            matInput 
+            [(ngModel)]="username" 
+            type="text" 
+            name="username" 
+            required
+            #usernameInput="ngModel"
+          >
+          <mat-error *ngIf="usernameInput.invalid && usernameInput.touched">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input 
+            matInput 
+            [(ngModel)]="email" 
+            type="email" 
+            name="email" 
+            required 
+            email
+            #emailInput="ngModel"
+          >
+          <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input 
+            matInput 
+            [(ngModel)]="password" 
+            type="password" 
+            name="password" 
+            required 
+            minlength="6"
+            #passwordInput="ngModel"
+          >
+          <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+            Password is required (min 6 characters)
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+        <!-- Loading Spinner -->
+        <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
+
+        <!-- Register Button -->
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [disabled]="registerForm.invalid || isLoading"
+          type="submit"
+        >
+          Register
+        </button>
+      </mat-card-content>
+    </form>
   </mat-card>
 </div>

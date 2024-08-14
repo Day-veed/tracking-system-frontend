@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -22,6 +23,7 @@ import { HeaderComponent } from '../header/header.component';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    MatProgressSpinnerModule,
     HeaderComponent
   ]
 })
@@ -29,15 +31,28 @@ export class RegisterComponent {
   username: string = '';
   email: string = '';
   password: string = '';
+  isLoading: boolean = false;
+  errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   async register() {
+    if (!this.username || !this.email || !this.password) {
+      this.errorMessage = 'All fields are required';
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = null;
+
     try {
       await this.authService.register(this.username, this.email, this.password);
       this.router.navigate(['/login']);
     } catch (error) {
+      this.errorMessage = 'Registration failed. Please try again.';
       console.error('Registration failed', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 }

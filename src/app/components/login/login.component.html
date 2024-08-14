@@ -1,17 +1,57 @@
-
 <div class="login-container">
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
-      <mat-form-field class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" type="email">
-      </mat-form-field>
-      <mat-form-field class="full-width">
-        <mat-label>Password</mat-label>
-        <input matInput [(ngModel)]="password" type="password">
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="login()">Login</button>
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            [(ngModel)]="email"
+            name="email"
+            type="email"
+            required
+            email
+            #emailInput="ngModel"
+          >
+          <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+            Please enter a valid email.
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [(ngModel)]="password"
+            name="password"
+            type="password"
+            required
+            minlength="6"
+            #passwordInput="ngModel"
+          >
+          <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+            Password must be at least 6 characters long.
+          </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button mat-raised-button color="primary" [disabled]="loginForm.invalid || isLoading">
+          <ng-container *ngIf="isLoading; else buttonText">
+            <mat-progress-spinner
+              diameter="24"
+              mode="indeterminate"
+              color="accent"
+            ></mat-progress-spinner>
+          </ng-container>
+          <ng-template #buttonText>
+            Login
+          </ng-template>
+        </button>
+      </form>
     </mat-card-content>
   </mat-card>
 </div>

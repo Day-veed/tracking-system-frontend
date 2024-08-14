@@ -5,7 +5,7 @@ import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'https://report-tracking-system-08f9d809933c.herokuapp.com/api/auth';
   private axiosInstance: AxiosInstance;
 
   constructor() {
